@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "DepartmentList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Heading</h2>
+<table id="dtBasicExample" class="table" width="100%">
+    <thead>
+        <tr>
+            <td>Dept No</td>
+            <td>Dept Name</td>
+        </tr>
+
+        @model IEnumerable<sTest.Models.department>
+        @foreach (var rec in Model) 
+        {
+            <tr>
+                <td> @rec.dept_no</td>
+                <td> @rec.dept_name</td>
+            </tr>
+        }
+
+    </thead>
+</table>
+
+@section scripts{
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable();
+            });
+        </script>    
+    }

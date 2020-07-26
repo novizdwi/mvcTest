@@ -12,10 +12,10 @@ namespace sTest.Controllers
     {
 
         public ActionResult DepartmentList() {
-            var Department = new department();
+            employeesEntities ee = new employeesEntities();
             ViewBag.Heading = "Department List";
             
-            return View(Department);
+            return View(ee.departments.ToList());
         }
 
         // GET: Department

@@ -1,33 +1,40 @@
-﻿<head>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-</head>
+﻿@model IEnumerable<sTest.Models.department>
 
 @{
     ViewBag.Title = "DepartmentList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Heading</h2>
-<table id="dtBasicExample" class="table" width="100%">
-    <thead>
-        <tr>
-            <td>Dept No</td>
-            <td>Dept Name</td>
-        </tr>
+<h2>DepartmentList</h2>
 
-        @model sTest.Models.department
-        @foreach (var rec in model) 
-        {
-            <tr>
-                <td> item</td>
-            </tr>
-        }
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dept_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dept_name)
+        </th>
+        <th></th>
+    </tr>
 
-    </thead>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.dept_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dept_name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
 </table>
-            <script>
-                $(document).ready(function () {
-                    $('#myTable').DataTable();
-                });
-            </script>
