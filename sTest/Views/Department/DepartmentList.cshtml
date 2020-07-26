@@ -1,0 +1,33 @@
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+</head>
+
+@{
+    ViewBag.Title = "DepartmentList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Heading</h2>
+<table id="dtBasicExample" class="table" width="100%">
+    <thead>
+        <tr>
+            <td>Dept No</td>
+            <td>Dept Name</td>
+        </tr>
+
+        @model sTest.Models.department
+        @foreach (var rec in model)
+        {
+            <tr>
+                <td> item</td>
+            </tr>
+        }
+
+    </thead>
+</table>
+            <script>
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                });
+            </script>

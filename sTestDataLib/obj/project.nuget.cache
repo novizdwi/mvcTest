@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Kgjp4L/eW5AGtvkZqN/wcRinEhiEsJmOZxuFTvdEMfeAYYkhP3fvrJ238m+PuhnpP668zUvCNOinyehVb5rEzA==",
+  "success": true,
+  "projectFilePath": "F:\\Novice\\apps\\sTest\\sTestDataLib\\sTestDataLib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LYCORIS\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\LYCORIS\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

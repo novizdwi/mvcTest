@@ -1,0 +1,9 @@
+F:\Novice\apps\sTest\sTestDataLib\bin\Debug\netstandard2.0\sTestDataLib.deps.json
+F:\Novice\apps\sTest\sTestDataLib\bin\Debug\netstandard2.0\sTestDataLib.dll
+F:\Novice\apps\sTest\sTestDataLib\bin\Debug\netstandard2.0\sTestDataLib.pdb
+F:\Novice\apps\sTest\sTestDataLib\obj\Debug\netstandard2.0\sTestDataLib.csprojAssemblyReference.cache
+F:\Novice\apps\sTest\sTestDataLib\obj\Debug\netstandard2.0\sTestDataLib.AssemblyInfoInputs.cache
+F:\Novice\apps\sTest\sTestDataLib\obj\Debug\netstandard2.0\sTestDataLib.AssemblyInfo.cs
+F:\Novice\apps\sTest\sTestDataLib\obj\Debug\netstandard2.0\sTestDataLib.csproj.CoreCompileInputs.cache
+F:\Novice\apps\sTest\sTestDataLib\obj\Debug\netstandard2.0\sTestDataLib.dll
+F:\Novice\apps\sTest\sTestDataLib\obj\Debug\netstandard2.0\sTestDataLib.pdb

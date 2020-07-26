@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="employeesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="department">
+    <Key>
+      <PropertyRef Name="dept_no" />
+    </Key>
+    <Property Name="dept_no" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="dept_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="dept_emp" Relationship="Self.dept_emp_ibfk_2" FromRole="departments" ToRole="dept_emp" />
+    <NavigationProperty Name="dept_manager" Relationship="Self.dept_manager_ibfk_2" FromRole="departments" ToRole="dept_manager" />
+  </EntityType>
+  <EntityType Name="dept_emp">
+    <Key>
+      <PropertyRef Name="emp_no" />
+      <PropertyRef Name="dept_no" />
+    </Key>
+    <Property Name="emp_no" Type="Int32" Nullable="false" />
+    <Property Name="dept_no" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="from_date" Type="DateTime" Nullable="false" />
+    <Property Name="to_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="department" Relationship="Self.dept_emp_ibfk_2" FromRole="dept_emp" ToRole="departments" />
+    <NavigationProperty Name="employee" Relationship="Self.dept_emp_ibfk_1" FromRole="dept_emp" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="dept_manager">
+    <Key>
+      <PropertyRef Name="emp_no" />
+      <PropertyRef Name="dept_no" />
+    </Key>
+    <Property Name="emp_no" Type="Int32" Nullable="false" />
+    <Property Name="dept_no" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="from_date" Type="DateTime" Nullable="false" />
+    <Property Name="to_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="department" Relationship="Self.dept_manager_ibfk_2" FromRole="dept_manager" ToRole="departments" />
+    <NavigationProperty Name="employee" Relationship="Self.dept_manager_ibfk_1" FromRole="dept_manager" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="emp_no" />
+    </Key>
+    <Property Name="emp_no" Type="Int32" Nullable="false" />
+    <Property Name="birth_date" Type="DateTime" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="65532" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="hire_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="dept_emp" Relationship="Self.dept_emp_ibfk_1" FromRole="employees" ToRole="dept_emp" />
+    <NavigationProperty Name="dept_manager" Relationship="Self.dept_manager_ibfk_1" FromRole="employees" ToRole="dept_manager" />
+    <NavigationProperty Name="salaries" Relationship="Self.salaries_ibfk_1" FromRole="employees" ToRole="salaries" />
+    <NavigationProperty Name="titles" Relationship="Self.titles_ibfk_1" FromRole="employees" ToRole="titles" />
+  </EntityType>
+  <EntityType Name="salary">
+    <Key>
+      <PropertyRef Name="emp_no" />
+      <PropertyRef Name="from_date" />
+    </Key>
+    <Property Name="emp_no" Type="Int32" Nullable="false" />
+    <Property Name="salary1" Type="Int32" Nullable="false" />
+    <Property Name="from_date" Type="DateTime" Nullable="false" />
+    <Property Name="to_date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="employee" Relationship="Self.salaries_ibfk_1" FromRole="salaries" ToRole="employees" />
+  </EntityType>
+  <EntityType Name="title">
+    <Key>
+      <PropertyRef Name="emp_no" />
+      <PropertyRef Name="title1" />
+      <PropertyRef Name="from_date" />
+    </Key>
+    <Property Name="emp_no" Type="Int32" Nullable="false" />
+    <Property Name="title1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="from_date" Type="DateTime" Nullable="false" />
+    <Property Name="to_date" Type="DateTime" />
+    <NavigationProperty Name="employee" Relationship="Self.titles_ibfk_1" FromRole="titles" ToRole="employees" />
+  </EntityType>
+  <Association Name="dept_emp_ibfk_2">
+    <End Role="departments" Type="Self.department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dept_emp" Type="Self.dept_emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departments">
+        <PropertyRef Name="dept_no" />
+      </Principal>
+      <Dependent Role="dept_emp">
+        <PropertyRef Name="dept_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="dept_manager_ibfk_2">
+    <End Role="departments" Type="Self.department" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dept_manager" Type="Self.dept_manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="departments">
+        <PropertyRef Name="dept_no" />
+      </Principal>
+      <Dependent Role="dept_manager">
+        <PropertyRef Name="dept_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="dept_emp_ibfk_1">
+    <End Role="employees" Type="Self.employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dept_emp" Type="Self.dept_emp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_no" />
+      </Principal>
+      <Dependent Role="dept_emp">
+        <PropertyRef Name="emp_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="dept_manager_ibfk_1">
+    <End Role="employees" Type="Self.employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dept_manager" Type="Self.dept_manager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_no" />
+      </Principal>
+      <Dependent Role="dept_manager">
+        <PropertyRef Name="emp_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="salaries_ibfk_1">
+    <End Role="employees" Type="Self.employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="salaries" Type="Self.salary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_no" />
+      </Principal>
+      <Dependent Role="salaries">
+        <PropertyRef Name="emp_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="titles_ibfk_1">
+    <End Role="employees" Type="Self.employee" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="titles" Type="Self.title" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="emp_no" />
+      </Principal>
+      <Dependent Role="titles">
+        <PropertyRef Name="emp_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="employeesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="departments" EntityType="Self.department" />
+    <EntitySet Name="dept_emp" EntityType="Self.dept_emp" />
+    <EntitySet Name="dept_manager" EntityType="Self.dept_manager" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="salaries" EntityType="Self.salary" />
+    <EntitySet Name="titles" EntityType="Self.title" />
+    <AssociationSet Name="dept_emp_ibfk_2" Association="Self.dept_emp_ibfk_2">
+      <End Role="departments" EntitySet="departments" />
+      <End Role="dept_emp" EntitySet="dept_emp" />
+    </AssociationSet>
+    <AssociationSet Name="dept_manager_ibfk_2" Association="Self.dept_manager_ibfk_2">
+      <End Role="departments" EntitySet="departments" />
+      <End Role="dept_manager" EntitySet="dept_manager" />
+    </AssociationSet>
+    <AssociationSet Name="dept_emp_ibfk_1" Association="Self.dept_emp_ibfk_1">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="dept_emp" EntitySet="dept_emp" />
+    </AssociationSet>
+    <AssociationSet Name="dept_manager_ibfk_1" Association="Self.dept_manager_ibfk_1">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="dept_manager" EntitySet="dept_manager" />
+    </AssociationSet>
+    <AssociationSet Name="salaries_ibfk_1" Association="Self.salaries_ibfk_1">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="salaries" EntitySet="salaries" />
+    </AssociationSet>
+    <AssociationSet Name="titles_ibfk_1" Association="Self.titles_ibfk_1">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="titles" EntitySet="titles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
